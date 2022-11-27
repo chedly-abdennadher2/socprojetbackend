@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allowedHeaders:
+              - content-type
+            allowedMethods:
+              - GET
+              - POST
+              - OPTIONS
+
+   
+    discovery: 
+      enabled: true  application:    name: gateway
+      
+server:
+  port: 8067
+  
+eureka:  client:    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/            
