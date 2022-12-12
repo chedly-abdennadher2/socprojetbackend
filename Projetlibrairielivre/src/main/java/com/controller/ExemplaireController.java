@@ -22,7 +22,7 @@ private ExemplaireRepository repository;
 public List<Exemplaire> exemplaires(){
 return repository.findAll();
 }
-@RequestMapping(value="/exemplaire/{id}",method=RequestMethod.GET) 
+@RequestMapping(value="/{id}",method=RequestMethod.GET) 
 public Exemplaire exemplaire(@PathVariable int id){
 return repository.findById(id).get();
 }

@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(name="LIVRE")
 public interface LivreService {
-	@GetMapping("/livre/livres") 
+	@GetMapping("/livres") 
 	@CrossOrigin(origins = "http://localhost:4200")
 	public PagedModel<Livre> livres();
 	
-	@GetMapping("/livre/livre/{id}") 
+	@GetMapping("/livre/{id}") 
 	@CrossOrigin(origins = "http://localhost:4200")
 	public Livre livre(@PathVariable int id);
 	
@@ -26,9 +26,9 @@ public interface LivreService {
 	@PostMapping("/livre/delete") 
 	@CrossOrigin(origins = "http://localhost:4200")
 	public void delete(@RequestBody Livre p);
-	@RequestMapping(value="/exemplaire/exemplaires",method=RequestMethod.GET) 
+	@RequestMapping(value="/exemplaires",method=RequestMethod.GET) 
 	public PagedModel<Exemplaire> exemplaires();
-	@RequestMapping(value="/exemplaire/exemplaire/{id}",method=RequestMethod.GET) 
+	@RequestMapping(value="/exemplaire/{id}",method=RequestMethod.GET) 
 	public Exemplaire exemplaire(@PathVariable int id);
 	@RequestMapping(value="/exemplaire/add",method=RequestMethod.POST) 
 	public void save(@RequestBody Exemplaire p);

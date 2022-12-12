@@ -27,7 +27,7 @@ public class LivreController {
 	return repository.findAll();
 	}
 	
-	@GetMapping("/livre/{id}") 
+	@GetMapping("/{id}") 
 	@CrossOrigin(origins = "http://localhost:4200")
 	public Livre livre(@PathVariable int id){
 	return repository.findById(id).get();
