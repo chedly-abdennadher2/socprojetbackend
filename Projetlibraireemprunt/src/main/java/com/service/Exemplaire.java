@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import lombok.*;
 
 @Data
+@Getter
 public class Exemplaire {
 	private int numexemplaire;
 	private String disponible;
@@ -12,4 +13,11 @@ public class Exemplaire {
 	private BigDecimal prix;
 	
 	private Livre livre;
+
+	@Override
+	public String toString() {
+		return "Exemplaire [numexemplaire=" + numexemplaire + ", disponible=" + disponible + ", prix=" + prix
+				+ ", livre=" + livre + "]";
+	}
+
 }
