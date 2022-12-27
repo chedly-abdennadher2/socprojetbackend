@@ -15,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.service.Adherent;
-import com.service.Exemplaire;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

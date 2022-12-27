@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.Adherent;
+import com.entity.AdherentProjection;
 import com.repository.AdherentRepository;
 
 @RequestMapping("/adherent")
@@ -28,6 +29,12 @@ return repository.findAll();
 public Adherent Adherent(@PathVariable int id){
 return repository.findById(id).get();
 }
+@GetMapping("/adherentnom/{nom}") 
+
+public List<AdherentProjection> Adherent(@PathVariable String nom){
+return repository.findByNom(nom);
+}
+
 @PostMapping("/add") 
 public void save(@RequestBody Adherent adh){
 repository.save(adh);
