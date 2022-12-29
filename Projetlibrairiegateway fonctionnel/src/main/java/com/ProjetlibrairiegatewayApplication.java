@@ -25,17 +25,5 @@ DiscoveryClientRouteDefinitionLocator dynamicRoutes(ReactiveDiscoveryClient rdc,
 {
 return new DiscoveryClientRouteDefinitionLocator(rdc,dlp);
 }
-@Bean 
-RouteLocator staticRoutes (RouteLocatorBuilder builder)
-{
-return builder.routes().route(r->r.path("/ADHERENT/adherent/**")
-	    .filters
-	    (f->f.circuitBreaker(c->c.setFallbackUri("forward:/defaultadherent")))
-		.uri("http://localhost:8067/ADHERENT/adherent")
-				
-)		
-		.build();	
-}
-
 
 }

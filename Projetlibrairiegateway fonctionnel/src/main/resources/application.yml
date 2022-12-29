@@ -1,8 +1,3 @@
-management.endpoint.health.show-details: always
-management.health.circuitbreakers.enabled: true
-management.health.ratelimiters.enabled: false
-management.health.diskspace.enabled: false
-      
 spring:
   cloud:
     gateway:
@@ -25,5 +20,4 @@ server:
   port: 8067
   
 eureka:  client:    service-url:
-      defaultZone: http://127.0.0.1:8761/eureka/
-     
+      defaultZone: http://127.0.0.1:8761/eureka/            
