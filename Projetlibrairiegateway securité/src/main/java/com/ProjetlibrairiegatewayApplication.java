@@ -11,12 +11,11 @@ import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.cors.reactive.CorsConfigurationSource;
-import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.keycloak.KeycloakSecurityContext;
 
 @SpringBootApplication
 public class ProjetlibrairiegatewayApplication {
@@ -29,18 +28,28 @@ DiscoveryClientRouteDefinitionLocator dynamicRoutes(ReactiveDiscoveryClient rdc,
 {
 return new DiscoveryClientRouteDefinitionLocator(rdc,dlp);
 }
+@Bean
+public RouteLocator routes(RouteLocatorBuilder builder) {
+	
+	return builder.routes()
+        .route(r -> r.path("/ADHERENT/**")
+            .filters(f -> f.filter(keycloakSecurityContextClientFilter()))
+                .authorizeExchange()
+                    .hasAuthority("manager")
+            .uri("http://localhost:8067/ADHERENT"))
+        .build();
+}
+	
 /*@Bean
-public CorsWebFilter corsFilter() {
-    CorsConfiguration config = new CorsConfiguration();
-    config.setAllowCredentials(true);
-    config.addAllowedOrigin("*");
-    config.addAllowedHeader("*");
-    config.addAllowedMethod("*");
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", config);
-    return new CorsWebFilter((CorsConfigurationSource) source);
+SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) throws Exception {
+  http
+          .authorizeExchange()
+           .pathMatchers("http://localhost:8067/ADHERENT").hasAuthority("manager")
+            .anyExchange().authenticated()
+            .and()
+          .oauth2ResourceServer()
+            .jwt();
+  return http.build();
 }*/
-
-
-
+	
 }

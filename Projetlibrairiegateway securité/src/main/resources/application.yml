@@ -1,0 +1,40 @@
+management.endpoint.health.show-details: always
+management.health.circuitbreakers.enabled: true
+management.health.ratelimiters.enabled: false
+management.health.diskspace.enabled: false
+      
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedHeaders:
+              - content-type
+            allowedMethods:
+              - GET
+              - POST
+              - OPTIONS
+
+   
+    discovery: 
+      enabled: true
+  application:
+    name: gateway
+      
+server:
+  port: 8067
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+     
+
+keycloak:
+  realm: googleapp
+  resource: products-app
+  auth-server-url: http://localhost:8100/auth
+  public-client: true
+  principal-attribute: name 
