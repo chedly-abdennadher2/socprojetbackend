@@ -9,6 +9,7 @@ import lombok.*;
 public class Livre {
 	private int numISBN;
 	private String titre;
+	private String auteur;
 	List <Exemplaire>exemplaires;
 	@Override
 	public String toString() {

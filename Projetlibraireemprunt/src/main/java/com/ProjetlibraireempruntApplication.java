@@ -51,13 +51,15 @@ public class ProjetlibraireempruntApplication {
 			adherents.forEach(System.out::println);
             	
 			Adherent adherent=adherentservice.Adherent(1);
-			System.out.println("adh "+adherent.getId_adherent()+adherent.getNom());
+			System.out.println("adh "+adherent.getId_adherent()+" "+adherent.getNom());
+			System.out.println("livre"+l1.getNumISBN()+" "+l1.getTitre()+" "+l1.getAuteur());
+			
 			Exemplaire exemplaire=livreService.exemplaire(1);
 			Emprunt emp=new Emprunt();
 			emp.setId_adherent(adherent.getId_adherent());
 			emp.setNumexemplaire(exemplaire.getNumexemplaire());
 			emp.setDateemprunt(new Date());
-//			Emprunt empsave=empruntrepository.save(emp);
+			Emprunt empsave=empruntrepository.save(emp);
             
 	};
 	}
